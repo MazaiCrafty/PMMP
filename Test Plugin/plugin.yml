@@ -20,9 +20,6 @@ commands:
     permission: test.command
   pertest:
     description: ""
-    permission: pertest.command
 permissions:
   test.command:
     default: true
-  pertest.command:
-    default: op
