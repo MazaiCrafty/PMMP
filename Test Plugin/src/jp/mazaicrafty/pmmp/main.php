@@ -25,7 +25,7 @@ class main extends PluginBase implements Listener
 
     public function onLoad(): void
     {
-        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::AQUA . "Enabling!");
+        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::YELLOW . " is Loading!");
     }
     
     public function onEnable(): void
