@@ -14,18 +14,19 @@ use pocketmine\event\Listener;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
+use pocketmine\command\ConsoleCommandSender;
 
 # Utils
 use pocketmine\utils\TextFormat as COLOR;
 
 class main extends PluginBase implements Listener
 {
-    const PLUGIN_NAME = "§a[§dTestPlugin§a]§r";
+    const PLUGIN_NAME = "§a[§dTestPlugin§a]§r ";
     const VERSION = "0.1.2";
 
     public function onLoad(): void
     {
-        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::YELLOW . " is Loading!");
+        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::AQUA . "Enabling!");
     }
     
     public function onEnable(): void
@@ -36,10 +37,10 @@ class main extends PluginBase implements Listener
 
     public function messageA(): void
     {
-        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::YELLOW . " is Enabling!");
-        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::AQUA . " Version " . COLOR::GREEN . self::VERSION);
-        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::GRAY . " https://github.com/MazaiCrafty/AdminTools");
-        Server::getInstance()->getLogger()->critical(self::PLUGIN_NAME . COLOR::WHITE . " Thank you for observing the specified license." . COLOR::BLUE . "by @MazaiCrafty");
+        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::YELLOW . "is Enabling!");
+        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::AQUA . "Version " . COLOR::GREEN . self::VERSION);
+        Server::getInstance()->getLogger()->info(self::PLUGIN_NAME . COLOR::GRAY . "https://github.com/MazaiCrafty/AdminTools");
+        Server::getInstance()->getLogger()->critical(self::PLUGIN_NAME . COLOR::WHITE . "Thank you for observing the specified license." . COLOR::BLUE . " by @MazaiCrafty");
     }
 
 
@@ -56,13 +57,24 @@ class main extends PluginBase implements Listener
     public function onCommand(CommandSender $sender, Command $command, string $label, array $params): bool
     {
         if (!$sender instanceof Player) {
-            $sender->sendMessage(self::PLUGIN_NAME . COLOR::RED . " Please use this in-game.");
+            $sender->sendMessage(self::PLUGIN_NAME . COLOR::RED . "Please use this in-game.");
             return true;
         }
 
         switch ($command->getName()) {
             case 'test':
-            $sender->sendMessage("test command");
+            $sender->sendMessage(self::PLUGIN_NAME . COLOR::WHITE . "test command");
+            Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $sender . " execute /test");
+            break;
+
+            case 'pertest':
+            if (!$sender->isOp()) {
+                $sender->sendMessage(self::PLUGIN_NAME . COLOR::RED . "You don't have permission to use this.");
+                Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $sender . " execute /pertest");                
+            }else {
+                $sender->sendMessage(self::PLUGIN_NAME . COLOR::WHITE . "pertest command");
+                Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $sender . " execute /pertest");                
+            }
         }
 
         return true;
