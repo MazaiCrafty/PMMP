@@ -55,25 +55,27 @@ class main extends PluginBase implements Listener
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $params): bool
-    {
+    {  
         if (!$sender instanceof Player) {
             $sender->sendMessage(self::PLUGIN_NAME . COLOR::RED . "Please use this in-game.");
             return true;
         }
-
+        
+        $player = $sender->getName();
+        
         switch ($command->getName()) {
             case 'test':
             $sender->sendMessage(self::PLUGIN_NAME . COLOR::WHITE . "test command");
-            Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $sender . " execute /test");
+            Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $player . " execute /test");
             break;
 
             case 'pertest':
             if (!$sender->isOp()) {
                 $sender->sendMessage(self::PLUGIN_NAME . COLOR::RED . "You don't have permission to use this.");
-                Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $sender . " execute /pertest");                
+                Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $player . " executes /pertest");                
             }else {
                 $sender->sendMessage(self::PLUGIN_NAME . COLOR::WHITE . "pertest command");
-                Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $sender . " execute /pertest");                
+                Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), "me " . $player . " executes /pertest");                
             }
         }
 
