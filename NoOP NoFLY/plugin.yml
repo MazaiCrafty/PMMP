@@ -1,0 +1,25 @@
+main: jp\mazaicrafty\pmmp\NoOP_NoFly\Main
+name: NoOP_NoFLY
+version: 1.0.3
+api:
+- 3.0.0-ALPHA10
+- 3.0.0-ALPHA11
+- 3.0.0-ALPHA12
+author: MazaiCrafty
+website: https://github.com/MazaiCrafty
+load: POSTWORLD
+description: ""
+commands:
+  nofly:
+    description: "NoOP NoFly <true/false/query>"
+    usage: "/nofly <on/true || off/false || query>"
+    permission: nofly
+
+permission:
+  nofly:
+  default: op
+  description: ""
+  children:
+    nofly.command:
+      default: true
+      description: ""

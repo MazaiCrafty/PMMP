@@ -1,0 +1,5 @@
+---
+FLYKICK: true
+BROADCAST: §a%PLAYER%§bから不正なFlyを検知したため、キックを実行しました。
+KICKMESSAGE: §a不正なFlyを検知したのでキックを実行しました
+...
